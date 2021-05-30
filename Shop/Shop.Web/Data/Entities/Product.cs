@@ -27,12 +27,23 @@ namespace Shop.Web.Data.Entities
 		[Display(Name = "Last Sale")]
 		public DateTime? LastSale { get; set; }
 
-		[Display(Name = "Is Availabe?")]
+		[Display(Name = "Is Available?")]
 		public bool IsAvailabe { get; set; }
 
 		[DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
 		public double Stock { get; set; }
 
 		public User User { get; set; }
+		public string ImageFullPath 
+		{ 
+			get
+            {
+				if(string.IsNullOrEmpty(this.ImageUrl))
+                {
+					return null;
+                }
+				return $"https://shopwebpereira.azurewebsites.net{this.ImageUrl.Substring(1)}"
+;            }
+		}
 	}
 }
